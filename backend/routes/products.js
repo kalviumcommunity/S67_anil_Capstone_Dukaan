@@ -24,5 +24,23 @@ router.get('/:id', async (req, res) => {
 });
 
 
+router.post('/', async (req, res) => {
+  const product = new Product({
+    productId: req.body.productId,
+    name: req.body.name,
+    costPrice: req.body.costPrice,
+    customerPrice: req.body.customerPrice,
+    description: req.body.description,
+    quantity: req.body.quantity,
+    category: req.body.category
+  });
+
+  try {
+    const newProduct = await product.save();
+    res.status(201).json(newProduct);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
 
 module.exports = router;

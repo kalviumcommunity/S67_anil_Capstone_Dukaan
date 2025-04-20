@@ -29,9 +29,6 @@ const ProductSchema = new mongoose.Schema({
   category: {
     type: String
   },
-  billImage: {
-    type: String
-  },
   createdAt: {
     type: Date,
     default: Date.now
