@@ -25,7 +25,7 @@ const Login = () => {
 
     try {
       setIsLoading(true);
-      const res = await axios.post('http://localhost:3000/api/auth/login', formData);
+      const res = await axios.post('http://localhost:4000/api/auth/login', formData);
       setMessage(res.data.message);
 
       if (res.data.token) {

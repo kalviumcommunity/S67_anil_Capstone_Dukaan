@@ -13,7 +13,7 @@ const Inventory = () => {
     category: '',
   });
 
-  const API_URL = 'http://localhost:3000/api/products';
+  const API_URL = 'http://localhost:4000/api/products';
 
   useEffect(() => {
     fetchProducts();
