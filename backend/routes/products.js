@@ -1,9 +1,11 @@
 
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product');
+const Product = require('../models/product');
+const verifyToken = require('../middlewares/verifyToken');
 
-router.get('/', async (req, res) => {
+router.get('/', verifyToken,  async (req, res) => {
+  const userId = req.userId;  
   try {
     const products = await Product.find();
     res.json(products);
@@ -24,7 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', verifyToken,  async (req, res) => {
   const product = new Product({
     productId: req.body.productId,
     name: req.body.name,
@@ -34,6 +36,7 @@ router.post('/', async (req, res) => {
     quantity: req.body.quantity,
     category: req.body.category
   });
+  const userId = req.userId; 
 
   try {
     const newProduct = await product.save();

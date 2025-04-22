@@ -40,9 +40,15 @@ router.post('/login', async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Incorrect password' });
     }
-
+//JWT TOKEN GENERATION 
     const token = jwt.sign({ id: user._id, name: user.name }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '2h',
+    });
+//to store token in cookie 
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Strict',
     });
 
     res.status(200).json({ message: `Welcome, ${user.name}`, token });
