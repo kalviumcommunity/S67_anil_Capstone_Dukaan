@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.post('/', verifyToken,  async (req, res) => {
+router.post('/add', verifyToken,  async (req, res) => {
   const product = new Product({
     productId: req.body.productId,
     name: req.body.name,
