@@ -1,2 +1,3 @@
-# S67_anil_Capstone_Dukaan
-This is your first repository
+frontend-deployment link
+
+https://luminous-melba-f823c7.netlify.app/
