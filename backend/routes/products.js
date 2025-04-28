@@ -46,4 +46,27 @@ router.post('/add', verifyToken,  async (req, res) => {
   }
 });
 
+//put-api used 
+router.put('/:id', async (req, res) => {
+  try {
+    const allowedUpdates = { ...req.body, updatedAt: new Date() };  
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      allowedUpdates,
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json(updatedProduct);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
+
 module.exports = router;
